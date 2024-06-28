@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=3 uid="uid://qk1bwubthw3x"]
+
+[ext_resource type="Script" path="res://scripts/gameOver.gd" id="1_og2h5"]
+[ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_8op71"]
+
+[sub_resource type="Theme" id="Theme_lc2cg"]
+default_font = ExtResource("2_8op71")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxql2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bofot"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qo38"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi7kn"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h3br"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_6eyd7"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.12
+glow_blend_mode = 1
+
+[node name="gameOVer" type="ColorRect"]
+offset_right = 1152.0
+offset_bottom = 646.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_og2h5")
+
+[node name="gameState" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.302083
+anchor_top = 0.185759
+anchor_right = 0.697916
+anchor_bottom = 0.30031
+offset_left = 0.000396729
+offset_top = 8.0
+offset_right = 0.000366211
+offset_bottom = 8.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_8op71")
+theme_override_font_sizes/font_size = 56
+text = "You won"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Replay" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -46.5
+offset_right = 120.0
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lc2cg")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_vxql2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bofot")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4qo38")
+action_mode = 0
+text = "Replay"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.709644
+anchor_right = 0.5
+anchor_bottom = 0.709644
+offset_left = -120.0
+offset_top = -46.43
+offset_right = 120.0
+offset_bottom = 46.57
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_lc2cg")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_vxql2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bofot")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yi7kn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7h3br")
+action_mode = 0
+text = "Quit"
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6eyd7")
+
+[connection signal="mouse_entered" from="Replay" to="." method="_on_replay_mouse_entered"]
+[connection signal="pressed" from="Replay" to="." method="_on_replay_pressed"]
+[connection signal="mouse_entered" from="Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://ktpd7o303c6g"]
+
+[ext_resource type="Script" path="res://scripts/gameManager.gd" id="1_7ujkf"]
+[ext_resource type="PackedScene" uid="uid://bc70l4qfk5yx2" path="res://scenes/player.tscn" id="1_ygqlh"]
+[ext_resource type="PackedScene" uid="uid://c757afy2r1yk1" path="res://scenes/ball.tscn" id="2_kbk5c"]
+[ext_resource type="FontFile" uid="uid://dd6x5jjh1pege" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_svpc1"]
+[ext_resource type="PackedScene" uid="uid://cpy55pj8w2vr3" path="res://scenes/cpu.tscn" id="3_mc587"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ggj8"]
+size = Vector2(29, 648)
+
+[sub_resource type="Curve" id="Curve_bqkag"]
+_data = [Vector2(0.011236, 1), 0.0, 0.0, 0, 0, Vector2(0.994382, 0.021978), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlt4a"]
+size = Vector2(1152, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6h7y"]
+size = Vector2(1152, 17)
+
+[sub_resource type="Environment" id="Environment_ftd8i"]
+background_mode = 3
+glow_enabled = true
+glow_strength = 0.87
+glow_bloom = 0.13
+glow_blend_mode = 1
+
+[node name="Game" type="Node2D"]
+
+[node name="Court" type="Node" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Court"]
+offset_left = -45.0
+offset_top = -55.0
+offset_right = 1197.0
+offset_bottom = 703.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Court"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -324.0
+offset_right = 20.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_7ujkf")
+
+[node name="BehindPlayer" type="Area2D" parent="GameManager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/BehindPlayer"]
+position = Vector2(1166, 324)
+shape = SubResource("RectangleShape2D_8ggj8")
+
+[node name="BehindCPU" type="Area2D" parent="GameManager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/BehindCPU"]
+position = Vector2(-14, 324)
+shape = SubResource("RectangleShape2D_8ggj8")
+
+[node name="PlayerScore" type="Label" parent="GameManager"]
+offset_left = 599.0
+offset_top = 2.0
+offset_right = 1153.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_svpc1")
+theme_override_font_sizes/font_size = 48
+text = "o"
+vertical_alignment = 1
+
+[node name="CPUscore" type="Label" parent="GameManager"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 553.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_svpc1")
+theme_override_font_sizes/font_size = 48
+text = "o"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="GameManager"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_svpc1")
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallExplosion" type="CPUParticles2D" parent="GameManager"]
+z_index = 1
+position = Vector2(56, 26)
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 1.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 70.71
+initial_velocity_max = 500.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_bqkag")
+color = Color(1, 0, 0, 1)
+
+[node name="GameSpeedTimer" type="Timer" parent="GameManager"]
+one_shot = true
+
+[node name="BallExplosionCamera" type="Camera2D" parent="GameManager"]
+position = Vector2(576, 324)
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="UpBoundary" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/UpBoundary"]
+position = Vector2(576, -5)
+shape = SubResource("RectangleShape2D_mlt4a")
+
+[node name="DownBoundary" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/DownBoundary"]
+position = Vector2(576, 657)
+shape = SubResource("RectangleShape2D_l6h7y")
+
+[node name="Player" parent="." instance=ExtResource("1_ygqlh")]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(1080, 110)
+
+[node name="CPU" parent="." instance=ExtResource("3_mc587")]
+unique_name_in_owner = true
+z_index = 1
+position = Vector2(32, 214)
+
+[node name="Ball" parent="." instance=ExtResource("2_kbk5c")]
+unique_name_in_owner = true
+z_index = 2
+position = Vector2(498, 346)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ftd8i")
+
+[connection signal="body_entered" from="GameManager/BehindPlayer" to="GameManager" method="_on_behind_player_body_entered"]
+[connection signal="body_entered" from="GameManager/BehindCPU" to="GameManager" method="_on_behind_cpu_body_entered"]
+[connection signal="timeout" from="GameManager/GameSpeedTimer" to="GameManager" method="_on_game_speed_timer_timeout"]
