@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://qk1bwubthw3x"]
+[gd_scene load_steps=10 format=3 uid="uid://do4d0lkrbe78j"]
 
-[ext_resource type="Script" path="res://scripts/gameOver.gd" id="1_og2h5"]
-[ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_8op71"]
+[ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_300d0"]
+[ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_sypxg"]
 
 [sub_resource type="Theme" id="Theme_lc2cg"]
-default_font = ExtResource("2_8op71")
+default_font = ExtResource("2_sypxg")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxql2"]
 bg_color = Color(0, 0, 0, 1)
@@ -52,13 +52,13 @@ glow_enabled = true
 glow_bloom = 0.12
 glow_blend_mode = 1
 
-[node name="gameOVer" type="ColorRect"]
+[node name="GameOVerScreen" type="ColorRect"]
 offset_right = 1152.0
-offset_bottom = 646.0
+offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
-script = ExtResource("1_og2h5")
+script = ExtResource("1_300d0")
 
-[node name="gameState" type="Label" parent="."]
+[node name="GameState" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.302083
@@ -70,7 +70,7 @@ offset_top = 8.0
 offset_right = 0.000366211
 offset_bottom = 8.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("2_8op71")
+theme_override_fonts/font = ExtResource("2_sypxg")
 theme_override_font_sizes/font_size = 56
 text = "You won"
 horizontal_alignment = 1

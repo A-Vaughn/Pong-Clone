@@ -1,8 +1,4 @@
 extends Node
+
+# Stores the winner from the game scene so that it can be accessed in the game over scene
 var winner
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-

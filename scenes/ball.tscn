@@ -199,7 +199,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 color = Color(1, 0, 0, 1)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="BallMovementTimer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
@@ -255,4 +255,4 @@ scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_t1gji")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BallMovementTimer" to="." method="_on_timer_timeout"]
