@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwux6klpv1gyy"
+path="res://.godot/imported/One Man Symphony - In The Blink Of An Eye (Free) - 09 Not For Myself (Chase Theme 02).mp3-b1666ed4c701c7608bfbcd96d81a7f64.mp3str"
+
+[deps]
+
+source_file="res://assets/music/One Man Symphony - In The Blink Of An Eye (Free) - 09 Not For Myself (Chase Theme 02).mp3"
+dest_files=["res://.godot/imported/One Man Symphony - In The Blink Of An Eye (Free) - 09 Not For Myself (Chase Theme 02).mp3-b1666ed4c701c7608bfbcd96d81a7f64.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

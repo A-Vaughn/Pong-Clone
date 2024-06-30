@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c757afy2r1yk1"]
+[gd_scene load_steps=11 format=3 uid="uid://c757afy2r1yk1"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_wdgu4"]
+[ext_resource type="AudioStream" uid="uid://kf57o0qyfy4x" path="res://assets/sounds/Blip_Select43.wav" id="2_2tsoy"]
+[ext_resource type="AudioStream" uid="uid://cfmafdimkjqgx" path="res://assets/sounds/Blip_Select44.wav" id="3_vr1fy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_603up"]
 size = Vector2(16.75, 16)
@@ -254,5 +256,14 @@ gravity = Vector2(-980, 0)
 scale_amount_min = 2.0
 scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_t1gji")
+
+[node name="BoundaryHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2tsoy")
+bus = &"SFX"
+
+[node name="PaddleHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vr1fy")
+volume_db = 4.0
+bus = &"SFX"
 
 [connection signal="timeout" from="BallMovementTimer" to="." method="_on_timer_timeout"]

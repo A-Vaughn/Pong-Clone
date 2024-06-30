@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ktpd7o303c6g"]
+[gd_scene load_steps=13 format=3 uid="uid://ktpd7o303c6g"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_7ujkf"]
 [ext_resource type="PackedScene" uid="uid://bc70l4qfk5yx2" path="res://scenes/player.tscn" id="1_ygqlh"]
 [ext_resource type="PackedScene" uid="uid://c757afy2r1yk1" path="res://scenes/ball.tscn" id="2_kbk5c"]
 [ext_resource type="FontFile" uid="uid://dd6x5jjh1pege" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_svpc1"]
+[ext_resource type="AudioStream" uid="uid://s6xb4144nhnm" path="res://assets/sounds/Explosion4.wav" id="3_613x8"]
 [ext_resource type="PackedScene" uid="uid://cpy55pj8w2vr3" path="res://scenes/cpu.tscn" id="3_mc587"]
+[ext_resource type="PackedScene" uid="uid://cctx8fr3fqrsn" path="res://scenes/pause_screen.tscn" id="4_nkwsc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ggj8"]
 size = Vector2(29, 648)
@@ -128,6 +130,12 @@ one_shot = true
 
 [node name="BallExplosionCamera" type="Camera2D" parent="GameManager"]
 position = Vector2(576, 324)
+
+[node name="BallExplosionSound" type="AudioStreamPlayer2D" parent="GameManager"]
+stream = ExtResource("3_613x8")
+bus = &"SFX"
+
+[node name="PauseScreen" parent="GameManager" instance=ExtResource("4_nkwsc")]
 
 [node name="Boundaries" type="Node" parent="."]
 

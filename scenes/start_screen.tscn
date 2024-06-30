@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://booqg2fygvb1j"]
+[gd_scene load_steps=12 format=3 uid="uid://booqg2fygvb1j"]
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_2ilkl"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_b8ceg"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/Blip_Select2.wav" id="3_qtgn6"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/Pickup_Coin12.wav" id="4_5idfs"]
 
 [sub_resource type="Theme" id="Theme_lc2cg"]
 default_font = ExtResource("2_b8ceg")
@@ -128,11 +130,21 @@ metadata/_edit_use_anchors_ = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_n8tvd")
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="Select" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_qtgn6")
+bus = &"SFX"
+
+[node name="Enter" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("4_5idfs")
+bus = &"SFX"
+
+[connection signal="focus_exited" from="StartButton" to="." method="_on_start_button_focus_exited"]
 [connection signal="mouse_entered" from="StartButton" to="." method="_on_start_button_mouse_entered"]
-[connection signal="pressed" from="StartButton" to="." method="_on_replay_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="focus_entered" from="ExitButton" to="." method="_on_exit_button_focus_entered"]
 [connection signal="focus_exited" from="ExitButton" to="." method="_on_exit_button_focus_exited"]
 [connection signal="mouse_entered" from="ExitButton" to="." method="_on_exit_button_mouse_entered"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="finished" from="SFX/Enter" to="." method="_on_enter_finished"]

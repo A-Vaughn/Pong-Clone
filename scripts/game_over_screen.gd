@@ -5,6 +5,11 @@ extends ColorRect
 @onready var _replay = $Replay
 @onready var _quit = $Quit
 @onready var _game_over_screen_scene = $"."
+@onready var _select = $SFX/Select
+@onready var _enter = $SFX/Enter
+
+var _replay_game : bool
+var _quit_game : bool
 
 
 func _ready():
@@ -23,38 +28,31 @@ func _ready():
 		_game_state.text = "You won"
 
 
-
-
-# Restarts the game
+# When the replay button is pressed
 func _on_replay_pressed():
 	
-	# Loads and starts the game scene
-	var _game_scene = ResourceLoader.load("res://scenes/game.tscn").instantiate()
+	# Set _replay_game to true
+	_replay_game = true
 	
-	# End the game over scene
-	_game_over_screen_scene.queue_free()
-	
-	# Change to the game scene
-	get_tree().root.add_child(_game_scene)
+	# Play enter sfx
+	_enter.play()
 
 
-
-# Quits the game
+# When the quit button is pressed
 func _on_quit_pressed():
 	
-	# Loads and starts the start screen scene
-	var _start_screen_scene = ResourceLoader.load("res://scenes/start_screen.tscn").instantiate()
+	# Set _quit_game to true
+	_quit_game = true
 	
-	# End the game over scene
-	_game_over_screen_scene.queue_free()
-	
-	# Change to the start screen scene
-	get_tree().root.add_child(_start_screen_scene)
-
+	# Play enter sfx
+	_enter.play()
 
 
 # When the mouse enters the replay button
 func _on_replay_mouse_entered():
+	
+	# Play select sfx
+	_select.play()
 	
 	# Highlight the replay button
 	_replay.grab_focus()
@@ -63,5 +61,47 @@ func _on_replay_mouse_entered():
 # When the mouse enters the _quit button
 func _on_quit_mouse_entered():
 	
+	# Play select sfx
+	_select.play()
+	
 	# Highlight the _quit button
 	_quit.grab_focus()
+
+
+# When the replay button is no longer highlighted
+func _on_replay_focus_exited():
+	
+	# Play the select sfx
+	_select.play()
+
+
+# When the quit button is no longer highlighted
+func _on_quit_focus_exited():
+	
+	# Play the select sfx
+	_select.play()
+
+
+# When the enter sfx is done playing
+func _on_enter_finished():
+	if _replay_game == true:
+		
+		# Loads and starts the game scene
+		var _game_scene = ResourceLoader.load("res://scenes/game.tscn").instantiate()
+		
+		# End the game over scene
+		_game_over_screen_scene.queue_free()
+		
+		# Change to the game scene
+		get_tree().root.add_child(_game_scene)
+		
+	elif _quit_game == true:
+		
+		# Loads and starts the start screen scene
+		var _start_screen_scene = ResourceLoader.load("res://scenes/start_screen.tscn").instantiate()
+		
+		# End the game over scene
+		_game_over_screen_scene.queue_free()
+		
+		# Change to the start screen scene
+		get_tree().root.add_child(_start_screen_scene)

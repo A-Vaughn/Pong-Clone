@@ -1,0 +1,177 @@
+[gd_scene load_steps=15 format=3 uid="uid://cctx8fr3fqrsn"]
+
+[ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_8drqt"]
+[ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="1_waf3o"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/Blip_Select2.wav" id="2_4d8vl"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/Pickup_Coin12.wav" id="3_itub5"]
+
+[sub_resource type="Theme" id="Theme_3jiqw"]
+default_font = ExtResource("1_waf3o")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xtxw"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txys3"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qqh7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_ke40k"]
+default_font = ExtResource("1_waf3o")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p21k5"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cckob"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocws7"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rde0o"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_n8tvd"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.12
+glow_blend_mode = 1
+
+[node name="PauseScreen" type="ColorRect"]
+process_mode = 2
+visible = false
+z_index = 5
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 0.92549)
+script = ExtResource("1_8drqt")
+
+[node name="GameTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294271
+anchor_top = 0.198142
+anchor_right = 0.705729
+anchor_bottom = 0.312694
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_waf3o")
+theme_override_font_sizes/font_size = 56
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ResumeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -46.0
+offset_right = 120.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3jiqw")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_4xtxw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txys3")
+theme_override_styles/focus = SubResource("StyleBoxFlat_4qqh7")
+action_mode = 0
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.709644
+anchor_right = 0.5
+anchor_bottom = 0.709644
+offset_left = -120.0
+offset_top = -46.43
+offset_right = 120.0
+offset_bottom = 46.57
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ke40k")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_p21k5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cckob")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ocws7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rde0o")
+action_mode = 0
+text = "Quit
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n8tvd")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Select" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("2_4d8vl")
+bus = &"SFX"
+
+[node name="Enter" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_itub5")
+bus = &"SFX"
+
+[node name="SFXMuteTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="focus_exited" from="ResumeButton" to="." method="_on_resume_button_focus_exited"]
+[connection signal="mouse_entered" from="ResumeButton" to="." method="_on_resume_button_mouse_entered"]
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="focus_exited" from="QuitButton" to="." method="_on_quit_button_focus_exited"]
+[connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_mouse_entered"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="finished" from="SFX/Enter" to="." method="_on_enter_finished"]
+[connection signal="timeout" from="SFXMuteTimer" to="." method="_on_sfx_mute_timer_timeout"]
