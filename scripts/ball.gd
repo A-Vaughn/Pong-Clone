@@ -15,11 +15,20 @@ var _play_speed_increase
 @onready var _paddle_hit_effect = $PaddleHitEffect
 @onready var _ball_hit_effect = $BallHitEffect
 @onready var _speed_effect = $SpeedEffect
-@onready var boundary_hit_sound = $BoundaryHitSound
-@onready var paddle_hit_sound = $PaddleHitSound
 
+@onready var _boundary_hit_sound = $BoundaryHitSound
+@onready var _paddle_hit_sound = $PaddleHitSound
+@onready var _paddle_hit_sound_2 = $PaddleHitSound2
+@onready var _paddle_hit_sound_3 = $PaddleHitSound3
+@onready var _timer_sound = $TimerSound
+
+@onready var _count_down_sound_timer = $CountDownSoundTimer
+@onready var _go_sound = $GoSound
+
+var _time_not_up : bool
 
 func _ready():
+	
 	# Handles various tasks to get the ball ready for moving and then moves the ball
 	start_ball()
 
@@ -42,20 +51,14 @@ func _process(delta):
 		if _collider.get_name() == "UpBoundary" or _collider.name == "DownBoundary":
 			
 			# Play the boundary hit sfx
-			boundary_hit_sound.play()
+			_boundary_hit_sound.play()
 			
 			# Bounce the ball off the boundary
 			_direction = _direction.bounce(_collision.get_normal())
 			
 		# If the ball didn't collide with the boundaries then it collided with a paddle
 		else:
-			# Plays the paddle hit sfx
-			paddle_hit_sound.play()
 			
-			# play the hit animation when the ball is over a certain speed
-			if _speed > 800:
-				_animation_player.play("hit")
-				
 			# Give the ball a random direction based on who hit it
 			_direction = _direction_after_paddle(_collider)
 			
@@ -72,9 +75,17 @@ func _process(delta):
 # Handles starting the ball at the start of the game and restarting the ball when someone scores a point 
 func start_ball():
 	
+	#Play timer count down sound
+	_timer_sound.play()
+	
+	# Set _time_not_up = true, this variable is used with _count_down_sound_timer to track _ball_movement_timer
+	_time_not_up = true
+	
 	# Start the timer that determines when the ball will move (after 3 seconds)
 	_ball_movement_timer.start()
 	
+	_count_down_sound_timer.start()
+
 	# Set the ball to invisible so that the timer label can be properly seen
 	_color_rect.set_visible(false)
 	
@@ -203,11 +214,26 @@ func _direction_after_paddle(_current_collider):
 	return _new_direction
 
 
-	# Determines which direction to play collision effects and plays them
+	# Determines which direction to play collision effects and plays them and handles sfx
 func _handle_collision_effects():
 	
-	# Plays effects when speed is greater than 800
-	if _speed > 800:
+	# If speed is less than 800
+	if _speed < 800:
+		
+		# Plays the paddle hit sfx
+		_paddle_hit_sound.play()
+		
+	# Plays effects when speed is greater than or equal to 800
+	else:
+		
+		# play the hit animation
+		_animation_player.play("hit")
+		
+		# Play the paddle hit effect for speed
+		_paddle_hit_sound_2.play()
+		
+		# Play the effect for particles
+		_paddle_hit_sound_3.play()
 		
 		# Determines the direction to emit particles when the ball was hit by the player
 		if _last_collider == "Player":
@@ -305,10 +331,30 @@ func _play_speed_increase_vfx():
 # When 3 seconds have passed:
 # Give the ball speed which allows it to move
 # Make the ball visible and make the timer label invisible
+# Play the go sfx
 func _on_timer_timeout():
 	_timer_label.set_visible(false)
 	_color_rect.set_visible(true)
 	_speed = 600
+	_go_sound.play()
+
+
+# This timer lasts 1 second and plays a sound at the end of the timer. I make the timer play one more time
+# so the sound could be heard twice. This is because i want the sound to play 3 times to match the _ball_movement_timer
+# which lasts 3 seconds. The first time the sound plays is when the game starts so i only need to worry about the other
+# two times
+# When 1 second has passed
+func _on_count_down_sound_timer_timeout():
 	
+	# Play count down timer sound
+	_timer_sound.play()
 	
-	
+	# If the sound needs to be played one more time
+	if _time_not_up == true:
+		
+		# Restart timer
+		_count_down_sound_timer.start()
+		
+		# Set _time_not_up to false
+		_time_not_up = false
+

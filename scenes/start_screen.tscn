@@ -145,6 +145,6 @@ bus = &"SFX"
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="focus_exited" from="ExitButton" to="." method="_on_exit_button_focus_exited"]
 [connection signal="mouse_entered" from="ExitButton" to="." method="_on_exit_button_mouse_entered"]
-[connection signal="pressed" from="ExitButton" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_quit_pressed"]
 [connection signal="finished" from="SFX/Enter" to="." method="_on_enter_finished"]

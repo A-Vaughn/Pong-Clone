@@ -13,19 +13,33 @@ var _resume_game : bool
 var _quit_game : bool
 
 
+
+# Checks for any inputs
+func _input(event):
+	
+	# Check if the input was the pause key
+	if event.is_action_pressed("pause"):
+		
+		# Press the resume button
+		_resume_button.emit_signal("pressed")
+
+
 # Whenever the pause screen is visible or invisible
 func _on_visibility_changed():
 	
-	# Mute the select sfx for the pause screen
-	# This was a work around 
-	_select.volume_db = -80
-	
-	# Highlights the replay button
-	_resume_button.grab_focus()
-	
-	# Start sfx mute timer
-	#sfx stay muted until timer times out
-	sfx_mute_timer.start()
+	# If the pause screen is currently  visible
+	if visible == true:
+		
+		# Mute the select sfx for the pause screen
+		# This was a work around 
+		_select.volume_db = -80
+		
+		# Highlights the replay button
+		_resume_button.grab_focus()
+		
+		# Start sfx mute timer
+		#sfx stay muted until timer times out
+		sfx_mute_timer.start()
 
 
 # When the resume button is no longer highlighted
@@ -100,18 +114,12 @@ func _on_enter_finished():
 # When the mouse enters the resume button
 func _on_resume_button_mouse_entered():
 	
-	# Play select sfx
-	_select.play()
-	
 	# Highlight the resume button
 	_resume_button.grab_focus()
 
 
 # When the mouse enters the quit button
 func _on_quit_button_mouse_entered():
-	
-	# Play select sfx
-	_select.play()
 	
 	# Highlight the quit button
 	_quit_button.grab_focus()

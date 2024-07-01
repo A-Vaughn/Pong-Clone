@@ -32,13 +32,13 @@ func _ready():
 	# Get the ball movement timer
 	_ball_movement_timer = _ball.get_node("BallMovementTimer")
 
-
-func _process(delta):
+# Checks for any inputs
+func _input(event):
 	
-	# If the game is paused
-	if Input.is_action_pressed("pause"):
-			
-			# Create a filter effect for the background song
+	# Check if the input was the pause key
+	if event.is_action_pressed("pause"):
+		
+		# Create a filter effect for the background song
 			var _effect = AudioEffectFilter.new()
 			
 			# Add the filter effect to the background song, this makes the song sound muffled
@@ -49,6 +49,10 @@ func _process(delta):
 			
 			# Pause the game
 			get_tree().paused = true
+
+
+func _process(delta):
+
 	
 	# Displays the time when the time until the ball moves
 	_timer_label.text = str(int(_ball_movement_timer.time_left)+1)
