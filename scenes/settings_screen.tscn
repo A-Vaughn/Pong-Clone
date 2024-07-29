@@ -1,0 +1,326 @@
+[gd_scene load_steps=23 format=3 uid="uid://dwvsamqfkaa2p"]
+
+[ext_resource type="Script" path="res://scripts/settings_screen.gd" id="1_dc7rd"]
+[ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="1_sso5m"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/Blip_Select2.wav" id="2_6pdhr"]
+[ext_resource type="Script" path="res://scripts/music_slider.gd" id="2_etj6g"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/Pickup_Coin12.wav" id="3_k0ig3"]
+[ext_resource type="Script" path="res://scripts/sfx_slider.gd" id="3_ulfve"]
+[ext_resource type="Script" path="res://scripts/score_to_win_input.gd" id="7_l8e5j"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_njn2c"]
+color = Color(1, 1, 1, 1)
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nlq5i"]
+color = Color(1, 0, 0, 1)
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_soaqy"]
+color = Color(1, 0, 0, 1)
+thickness = 5
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ueuwo"]
+color = Color(1, 1, 1, 1)
+thickness = 5
+
+[sub_resource type="Curve" id="Curve_2qyig"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xwo2d"]
+curve = SubResource("Curve_2qyig")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ixd7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 0)
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 9.603
+initial_velocity_min = 65.16
+initial_velocity_max = 685.39
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_xwo2d")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_n8tvd"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.12
+glow_blend_mode = 1
+
+[sub_resource type="Theme" id="Theme_4dxx4"]
+default_font = ExtResource("1_sso5m")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qcrp"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txdx8"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7qcw"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxo5k"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atk6g"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0n4y3"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0, 0, 1)
+
+[node name="SettingsScreen" type="ColorRect"]
+process_mode = 3
+z_index = 5
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_dc7rd")
+
+[node name="SettingsTitle" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294271
+anchor_top = 0.198142
+anchor_right = 0.705729
+anchor_bottom = 0.312694
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_sso5m")
+theme_override_font_sizes/font_size = 56
+text = "Settings
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="MusicOption" type="Node" parent="."]
+
+[node name="MusicLabel" type="Label" parent="MusicOption"]
+z_index = 5
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.457
+anchor_right = 0.503
+anchor_bottom = 0.543
+offset_left = -0.360016
+offset_top = -0.136047
+offset_right = 0.543945
+offset_bottom = 0.135986
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_sso5m")
+theme_override_font_sizes/font_size = 32
+text = "Music"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicSlider" type="HSlider" parent="MusicOption"]
+z_index = 5
+anchors_preset = -1
+anchor_left = 0.685
+anchor_top = 0.5
+anchor_right = 0.685
+anchor_bottom = 0.5
+offset_left = -184.12
+offset_top = -8.0
+offset_right = 183.88
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/center_grabber = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_njn2c")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_nlq5i")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_soaqy")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("2_etj6g")
+_bus_name = "Music"
+
+[node name="SFXOption" type="Node" parent="."]
+
+[node name="SFXLabel" type="Label" parent="SFXOption"]
+z_index = 5
+anchors_preset = -1
+anchor_left = 0.342
+anchor_top = 0.603
+anchor_right = 0.342
+anchor_bottom = 0.603
+offset_left = -186.984
+offset_top = -27.744
+offset_right = 186.016
+offset_bottom = 28.256
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_sso5m")
+theme_override_font_sizes/font_size = 32
+text = "SFX
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXSlider" type="HSlider" parent="SFXOption"]
+z_index = 5
+anchors_preset = -1
+anchor_left = 0.684
+anchor_top = 0.605
+anchor_right = 0.684
+anchor_bottom = 0.605
+offset_left = -183.968
+offset_top = -8.04001
+offset_right = 184.032
+offset_bottom = 7.95999
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/center_grabber = 1
+theme_override_styles/slider = SubResource("StyleBoxLine_ueuwo")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_nlq5i")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_soaqy")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("3_ulfve")
+_bus_name = "SFX"
+metadata/_edit_use_anchors_ = true
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Select" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("2_6pdhr")
+bus = &"SFX"
+
+[node name="Enter" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_k0ig3")
+bus = &"SFX"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(593, -30)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_6ixd7")
+lifetime = 4.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n8tvd")
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.875664
+anchor_right = 0.5
+anchor_bottom = 0.875664
+offset_left = -140.0
+offset_top = -46.43
+offset_right = 140.0
+offset_bottom = 25.57
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4dxx4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0qcrp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txdx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n7qcw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_uxo5k")
+action_mode = 0
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreToWinOption" type="Node" parent="."]
+
+[node name="ScoreToWinLabel" type="Label" parent="ScoreToWinOption"]
+z_index = 5
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.656074
+anchor_right = 0.503
+anchor_bottom = 0.742074
+offset_left = -0.360016
+offset_top = -0.136047
+offset_right = 0.543945
+offset_bottom = 0.135986
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_sso5m")
+theme_override_font_sizes/font_size = 32
+text = "Score To Win"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreToWinInput" type="LineEdit" parent="ScoreToWinOption"]
+z_index = 5
+anchors_preset = -1
+anchor_left = 0.557
+anchor_top = 0.697802
+anchor_right = 0.557
+anchor_bottom = 0.697802
+offset_left = -37.6641
+offset_top = -15.176
+offset_right = 38.3359
+offset_bottom = 15.824
+focus_neighbor_bottom = NodePath("../../BackButton")
+theme_override_fonts/font = ExtResource("1_sso5m")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_atk6g")
+theme_override_styles/focus = SubResource("StyleBoxFlat_0n4y3")
+alignment = 1
+caret_blink = true
+script = ExtResource("7_l8e5j")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="focus_exited" from="MusicOption/MusicSlider" to="." method="_on_music_slider_focus_exited"]
+[connection signal="mouse_entered" from="MusicOption/MusicSlider" to="." method="_on_music_slider_mouse_entered"]
+[connection signal="value_changed" from="MusicOption/MusicSlider" to="MusicOption/MusicSlider" method="_on_value_changed"]
+[connection signal="focus_exited" from="SFXOption/SFXSlider" to="." method="_on_sfx_slider_focus_exited"]
+[connection signal="mouse_entered" from="SFXOption/SFXSlider" to="." method="_on_sfx_slider_mouse_entered"]
+[connection signal="value_changed" from="SFXOption/SFXSlider" to="SFXOption/SFXSlider" method="_on_value_changed"]
+[connection signal="finished" from="SFX/Enter" to="." method="_on_enter_finished"]
+[connection signal="focus_exited" from="BackButton" to="." method="_on_back_button_focus_exited"]
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="focus_exited" from="ScoreToWinOption/ScoreToWinInput" to="." method="_on_score_to_win_input_focus_exited"]
+[connection signal="mouse_entered" from="ScoreToWinOption/ScoreToWinInput" to="." method="_on_score_to_win_input_mouse_entered"]
+[connection signal="text_changed" from="ScoreToWinOption/ScoreToWinInput" to="ScoreToWinOption/ScoreToWinInput" method="_on_text_changed"]
+[connection signal="text_submitted" from="ScoreToWinOption/ScoreToWinInput" to="ScoreToWinOption/ScoreToWinInput" method="_on_text_submitted"]

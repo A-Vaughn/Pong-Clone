@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cctx8fr3fqrsn"]
+[gd_scene load_steps=19 format=3 uid="uid://cctx8fr3fqrsn"]
 
 [ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_8drqt"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="1_waf3o"]
@@ -25,6 +25,33 @@ border_width_bottom = 10
 border_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qqh7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_aexct"]
+default_font = ExtResource("1_waf3o")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aix7f"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe0hi"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02md5"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 10
 border_width_top = 10
@@ -105,34 +132,59 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -120.0
-offset_top = -46.0
-offset_right = 120.0
-offset_bottom = 47.0
+offset_left = -140.0
+offset_top = -35.0
+offset_right = 140.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_3jiqw")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_4xtxw")
 theme_override_styles/hover = SubResource("StyleBoxFlat_txys3")
 theme_override_styles/focus = SubResource("StyleBoxFlat_4qqh7")
 action_mode = 0
 text = "Resume"
 
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.627315
+anchor_right = 0.5
+anchor_bottom = 0.627315
+offset_left = -140.0
+offset_top = -35.5
+offset_right = 140.0
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_aexct")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_aix7f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fe0hi")
+theme_override_styles/focus = SubResource("StyleBoxFlat_02md5")
+action_mode = 0
+text = "Settings"
+metadata/_edit_use_anchors_ = true
+
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.709644
+anchor_top = 0.559306
 anchor_right = 0.5
-anchor_bottom = 0.709644
-offset_left = -120.0
-offset_top = -46.43
-offset_right = 120.0
-offset_bottom = 46.57
+anchor_bottom = 0.559306
+offset_left = -140.0
+offset_top = 89.57
+offset_right = 140.0
+offset_bottom = 161.57
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_ke40k")
@@ -140,7 +192,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_p21k5")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cckob")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ocws7")
@@ -164,12 +216,15 @@ stream = ExtResource("3_itub5")
 bus = &"SFX"
 
 [node name="SFXMuteTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="focus_exited" from="ResumeButton" to="." method="_on_resume_button_focus_exited"]
 [connection signal="mouse_entered" from="ResumeButton" to="." method="_on_resume_button_mouse_entered"]
 [connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="focus_exited" from="SettingsButton" to="." method="_on_settings_button_focus_exited"]
+[connection signal="mouse_entered" from="SettingsButton" to="." method="_on_settings_button_mouse_entered"]
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="focus_exited" from="QuitButton" to="." method="_on_quit_button_focus_exited"]
 [connection signal="mouse_entered" from="QuitButton" to="." method="_on_quit_button_mouse_entered"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]

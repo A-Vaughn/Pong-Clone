@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_wdgu4"]
 [ext_resource type="AudioStream" uid="uid://kf57o0qyfy4x" path="res://assets/sounds/Blip_Select43.wav" id="2_2tsoy"]
 [ext_resource type="AudioStream" uid="uid://cfmafdimkjqgx" path="res://assets/sounds/Blip_Select44.wav" id="3_vr1fy"]
-[ext_resource type="AudioStream" uid="uid://cxk06de3culdr" path="res://assets/sounds/Paste.wav" id="4_tu2eq"]
+[ext_resource type="AudioStream" uid="uid://1ob6s4vmgufn" path="res://assets/sounds/Paddle_Hit_Speed.wav" id="4_ef13i"]
 [ext_resource type="AudioStream" uid="uid://bxf4pljenmkn8" path="res://assets/sounds/hiteffect.wav" id="5_somsp"]
 [ext_resource type="AudioStream" uid="uid://bcyugqro1rifv" path="res://assets/sounds/Timer_sound.wav" id="6_7jdum"]
 [ext_resource type="AudioStream" uid="uid://c55h3se6gmvog" path="res://assets/sounds/Go_Sound.wav" id="7_0b6ax"]
@@ -274,7 +274,7 @@ volume_db = 4.0
 bus = &"SFX"
 
 [node name="PaddleHitSound2" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_tu2eq")
+stream = ExtResource("4_ef13i")
 volume_db = 6.0
 bus = &"SFX"
 
@@ -285,9 +285,11 @@ bus = &"SFX"
 
 [node name="TimerSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_7jdum")
+bus = &"SFX"
 
 [node name="GoSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_0b6ax")
+bus = &"SFX"
 
 [connection signal="timeout" from="BallMovementTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="CountDownSoundTimer" to="." method="_on_count_down_sound_timer_timeout"]

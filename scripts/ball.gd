@@ -223,6 +223,63 @@ func _handle_collision_effects():
 		# Plays the paddle hit sfx
 		_paddle_hit_sound.play()
 		
+		_ball_hit_effect.initial_velocity_max = 50
+		_ball_hit_effect.speed_scale = 1
+		_ball_hit_effect.lifetime = 0.4
+		
+		# Determines the direction to emit particles when the ball was hit by the player
+		if _last_collider == "Player":
+			
+			# Set the particles effect to the right side of the ball
+			_ball_hit_effect.position.x = 38
+			
+			# Set the particles to emit to the right
+			_ball_hit_effect.gravity.x = -980
+			
+			# Emit the particles
+			_ball_hit_effect.emitting = true
+			
+			## Set the particles effect to the right side of the ball
+			#_paddle_hit_effect.position.x = 23
+			#
+			## Set the particles to emit to the right
+			#_paddle_hit_effect.gravity.x = -980
+			
+			# Emit the particles
+			#_paddle_hit_effect.emitting = true
+			#
+			## Set the particles effect to the right side of the ball
+			#_speed_effect.position.x = 15
+			#
+			## Set the particles to emit to the right
+			#_speed_effect.gravity.x = -980
+			
+		else:
+			
+			# Set the particles effect to the left side of the ball
+			_ball_hit_effect.position.x =-20
+			
+			# Set the particles to emit to the left
+			_ball_hit_effect.gravity.x = 980
+			
+			# Emit the particles
+			_ball_hit_effect.emitting = true
+			
+			## Set the particles effect to the left side of the ball
+			#_paddle_hit_effect.position.x = -3
+			#
+			## Set the particles to emit to the left
+			#_paddle_hit_effect.gravity.x = 980
+			#
+			## Emit the particles
+			#_paddle_hit_effect.emitting = true
+			
+			## Set the particles effect to the right side of the ball
+			#_speed_effect.position.x =5 
+			#
+			## Set the particles to emit to the left
+			#_speed_effect.gravity.x = 980
+		
 	# Plays effects when speed is greater than or equal to 800
 	else:
 		
@@ -234,6 +291,11 @@ func _handle_collision_effects():
 		
 		# Play the effect for particles
 		_paddle_hit_sound_3.play()
+		
+		
+		_ball_hit_effect.initial_velocity_max = 100
+		#_ball_hit_effect.speed_scale = 1
+		_ball_hit_effect.lifetime = 0.6
 		
 		# Determines the direction to emit particles when the ball was hit by the player
 		if _last_collider == "Player":

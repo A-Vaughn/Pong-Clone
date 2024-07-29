@@ -3,7 +3,7 @@ extends Node
 var _player_score = 0
 var _cpu_score = 0
 var last_scorer = null
-var _score_to_win = 3
+#var _score_to_win = 3
 var _ball_movement_timer
 
 @onready var _ball = %Ball
@@ -39,23 +39,25 @@ func _input(event):
 	if event.is_action_pressed("pause"):
 		
 		# Create a filter effect for the background song
-			var _effect = AudioEffectFilter.new()
-			
-			# Add the filter effect to the background song, this makes the song sound muffled
-			AudioServer.add_bus_effect(1, _effect, 0)
-			
-			# Make the pause screen visible
-			pause_screen.visible = true
-			
-			# Pause the game
-			get_tree().paused = true
+		var _effect = AudioEffectFilter.new()
+		
+		# Add the filter effect to the background song, this makes the song sound muffled
+		AudioServer.add_bus_effect(1, _effect, 0)
+		
+		# Make the pause screen visible
+		pause_screen.visible = true
+		
+		# Pause the game
+		get_tree().paused = true
 
 
 func _process(delta):
-
 	
-	# Displays the time when the time until the ball moves
-	_timer_label.text = str(int(_ball_movement_timer.time_left)+1)
+	# Check if the ball movement timer is running 
+	if _ball_movement_timer.is_stopped() == false:
+		
+		# Displays the time when the time until the ball moves
+		_timer_label.text = str(int(_ball_movement_timer.time_left)+1)
 	
 	# Camera shake stuff
 	if _shake_strength>0:
@@ -151,7 +153,8 @@ func _end_game(current_last_scorer):
 	if current_last_scorer == "CPU":
 		
 		# Checks if the _cpu_score is the same as the _score_to_win
-		if _cpu_score == _score_to_win:
+		#if _cpu_score == _score_to_win:
+		if _cpu_score == GameData.score_to_win:
 			
 			# Changes to the game over scene
 			_change_to_game_over_screen_scene()
@@ -160,8 +163,8 @@ func _end_game(current_last_scorer):
 	elif current_last_scorer == "Player":
 		
 		# Checks if the _player_score is the same as the _score_to_win
-		if _player_score == _score_to_win:
-			
+		#if _player_score == _score_to_win:
+		if _player_score == GameData.score_to_win:
 			# Changes to the game over scene
 			_change_to_game_over_screen_scene()
 

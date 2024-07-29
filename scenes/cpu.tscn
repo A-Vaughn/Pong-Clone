@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/cpu.gd" id="1_2r3dk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebnpb"]
-size = Vector2(37, 220)
+size = Vector2(37, 222.5)
 
 [node name="CPU" type="StaticBody2D"]
 script = ExtResource("1_2r3dk")

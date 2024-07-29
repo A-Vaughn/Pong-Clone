@@ -25,6 +25,10 @@ Music="*res://scenes/music.tscn"
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 move_up={

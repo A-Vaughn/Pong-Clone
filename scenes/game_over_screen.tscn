@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://do4d0lkrbe78j"]
+[gd_scene load_steps=15 format=3 uid="uid://do4d0lkrbe78j"]
 
 [ext_resource type="Script" path="res://scripts/game_over_screen.gd" id="1_300d0"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_sypxg"]
@@ -54,6 +54,28 @@ glow_enabled = true
 glow_bloom = 0.12
 glow_blend_mode = 1
 
+[sub_resource type="Curve" id="Curve_t6h4s"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hrxl3"]
+curve = SubResource("Curve_t6h4s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_of3n7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 0)
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 9.603
+initial_velocity_min = 65.16
+initial_velocity_max = 685.39
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_hrxl3")
+color = Color(1, 0, 0, 1)
+
 [node name="GameOVerScreen" type="ColorRect"]
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -61,6 +83,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("1_300d0")
 
 [node name="GameState" type="Label" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.302083
@@ -78,9 +101,9 @@ text = "You won"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
-metadata/_edit_use_anchors_ = true
 
 [node name="Replay" type="Button" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -88,16 +111,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -120.0
-offset_top = -46.5
+offset_top = -35.0
 offset_right = 120.0
-offset_bottom = 46.5
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_lc2cg")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_vxql2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bofot")
 theme_override_styles/focus = SubResource("StyleBoxFlat_4qo38")
@@ -105,6 +128,7 @@ action_mode = 0
 text = "Replay"
 
 [node name="Quit" type="Button" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -112,16 +136,16 @@ anchor_top = 0.709644
 anchor_right = 0.5
 anchor_bottom = 0.709644
 offset_left = -120.0
-offset_top = -46.43
+offset_top = -88.8493
 offset_right = 120.0
-offset_bottom = 46.57
+offset_bottom = -16.8493
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_lc2cg")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_vxql2")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bofot")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yi7kn")
@@ -142,6 +166,12 @@ bus = &"SFX"
 [node name="Enter" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("4_saawl")
 bus = &"SFX"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(593, -30)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_of3n7")
+lifetime = 4.0
 
 [connection signal="focus_exited" from="Replay" to="." method="_on_replay_focus_exited"]
 [connection signal="mouse_entered" from="Replay" to="." method="_on_replay_mouse_entered"]
