@@ -1,0 +1,317 @@
+[gd_scene load_steps=14 format=3 uid="uid://dgpu5iw62mxf5"]
+
+[ext_resource type="Script" path="res://scripts/game_mode_screen.gd" id="1_3j354"]
+[ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_4d874"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/select.wav" id="3_xd3bk"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/enter.wav" id="4_dp7jw"]
+
+[sub_resource type="Curve" id="Curve_2qyig"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xwo2d"]
+curve = SubResource("Curve_2qyig")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6ixd7"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 1, 0)
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 9.603
+initial_velocity_min = 65.16
+initial_velocity_max = 685.39
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_xwo2d")
+color = Color(1, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_n8tvd"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.12
+glow_blend_mode = 1
+
+[sub_resource type="Theme" id="Theme_4dxx4"]
+default_font = ExtResource("2_4d874")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qcrp"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txdx8"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7qcw"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxo5k"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
+
+[node name="GameModeScreen" type="ColorRect"]
+process_mode = 3
+z_index = 5
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_3j354")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.294271
+anchor_top = 0.198142
+anchor_right = 0.705729
+anchor_bottom = 0.312694
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4d874")
+theme_override_font_sizes/font_size = 56
+text = "Game Mode
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Select" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("3_xd3bk")
+bus = &"SFX"
+
+[node name="Enter" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("4_dp7jw")
+bus = &"SFX"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(593, -30)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_6ixd7")
+lifetime = 4.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_n8tvd")
+
+[node name="SinglePlayerButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.368
+anchor_top = 0.5
+anchor_right = 0.368056
+anchor_bottom = 0.5
+offset_left = -139.936
+offset_top = -35.0
+offset_right = 140.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4dxx4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0qcrp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txdx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n7qcw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_uxo5k")
+action_mode = 0
+text = "1 Player"
+metadata/_edit_use_anchors_ = true
+
+[node name="TwoPlayerButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.62
+anchor_top = 0.502
+anchor_right = 0.62
+anchor_bottom = 0.502
+offset_left = -140.24
+offset_top = -36.296
+offset_right = 139.76
+offset_bottom = 35.704
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4dxx4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0qcrp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txdx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n7qcw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_uxo5k")
+action_mode = 0
+text = "2 Player"
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.875664
+anchor_right = 0.5
+anchor_bottom = 0.875664
+offset_left = -140.0
+offset_top = -46.43
+offset_right = 140.0
+offset_bottom = 25.57
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_4dxx4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_0qcrp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txdx8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n7qcw")
+theme_override_styles/focus = SubResource("StyleBoxFlat_uxo5k")
+action_mode = 0
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="P1Label" type="Label" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.63
+anchor_right = 0.244319
+anchor_bottom = 0.682049
+offset_left = 1.63998
+offset_top = -0.240021
+offset_right = 2.54395
+offset_bottom = 0.0320129
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4d874")
+theme_override_font_sizes/font_size = 24
+text = "P1:"
+horizontal_alignment = 3
+autowrap_mode = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="P1Controls" type="Label" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.251181
+anchor_top = 0.63
+anchor_right = 0.737375
+anchor_bottom = 0.682049
+offset_left = -2.36002
+offset_top = -0.240021
+offset_right = -1.45605
+offset_bottom = 0.0320129
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4d874")
+theme_override_font_sizes/font_size = 24
+text = "Move with W and S."
+autowrap_mode = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="P2Label" type="Label" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.181736
+anchor_top = 0.71179
+anchor_right = 0.246056
+anchor_bottom = 0.763839
+offset_left = -0.360016
+offset_top = -0.240021
+offset_right = 0.543945
+offset_bottom = 0.0320129
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4d874")
+theme_override_font_sizes/font_size = 24
+text = "P2:"
+horizontal_alignment = 3
+autowrap_mode = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="P2Controls" type="Label" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.249444
+anchor_top = 0.71179
+anchor_right = 0.813764
+anchor_bottom = 0.763839
+offset_left = -0.360016
+offset_top = -0.240021
+offset_right = 0.543945
+offset_bottom = 0.0320129
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4d874")
+theme_override_font_sizes/font_size = 24
+text = "Move with UP and DOWN arrow keys."
+autowrap_mode = 2
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ChooseLabel" type="Label" parent="."]
+visible = false
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.378
+anchor_top = 0.644
+anchor_right = 0.622
+anchor_bottom = 0.73
+offset_left = 0.543976
+offset_top = -0.312042
+offset_right = -0.544067
+offset_bottom = -0.0400085
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_4d874")
+theme_override_font_sizes/font_size = 24
+text = "Choose a mode."
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="finished" from="SFX/Enter" to="." method="_on_enter_finished"]
+[connection signal="focus_entered" from="SinglePlayerButton" to="." method="_on_single_player_button_focus_entered"]
+[connection signal="focus_exited" from="SinglePlayerButton" to="." method="_on_single_player_button_focus_exited"]
+[connection signal="mouse_entered" from="SinglePlayerButton" to="." method="_on_single_player_button_mouse_entered"]
+[connection signal="pressed" from="SinglePlayerButton" to="." method="_on_single_player_button_pressed"]
+[connection signal="focus_entered" from="TwoPlayerButton" to="." method="_on_two_player_button_focus_entered"]
+[connection signal="focus_exited" from="TwoPlayerButton" to="." method="_on_two_player_button_focus_exited"]
+[connection signal="mouse_entered" from="TwoPlayerButton" to="." method="_on_two_player_button_mouse_entered"]
+[connection signal="pressed" from="TwoPlayerButton" to="." method="_on_two_player_button_pressed"]
+[connection signal="focus_entered" from="BackButton" to="." method="_on_back_button_focus_entered"]
+[connection signal="focus_exited" from="BackButton" to="." method="_on_back_button_focus_exited"]
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

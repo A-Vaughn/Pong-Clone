@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/settings_screen.gd" id="1_dc7rd"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="1_sso5m"]
-[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/Blip_Select2.wav" id="2_6pdhr"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/select.wav" id="2_6pdhr"]
 [ext_resource type="Script" path="res://scripts/music_slider.gd" id="2_etj6g"]
-[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/Pickup_Coin12.wav" id="3_k0ig3"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/enter.wav" id="3_k0ig3"]
 [ext_resource type="Script" path="res://scripts/sfx_slider.gd" id="3_ulfve"]
 [ext_resource type="Script" path="res://scripts/score_to_win_input.gd" id="7_l8e5j"]
 

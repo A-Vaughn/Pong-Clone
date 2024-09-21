@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bc70l4qfk5yx2" path="res://scenes/player.tscn" id="1_ygqlh"]
 [ext_resource type="PackedScene" uid="uid://c757afy2r1yk1" path="res://scenes/ball.tscn" id="2_kbk5c"]
 [ext_resource type="FontFile" uid="uid://dd6x5jjh1pege" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_svpc1"]
-[ext_resource type="AudioStream" uid="uid://s6xb4144nhnm" path="res://assets/sounds/Explosion4.wav" id="3_613x8"]
+[ext_resource type="AudioStream" uid="uid://s6xb4144nhnm" path="res://assets/sounds/ball_explosion.wav" id="3_613x8"]
 [ext_resource type="PackedScene" uid="uid://cpy55pj8w2vr3" path="res://scenes/cpu.tscn" id="3_mc587"]
 [ext_resource type="PackedScene" uid="uid://cctx8fr3fqrsn" path="res://scenes/pause_screen.tscn" id="4_nkwsc"]
 
@@ -56,15 +56,15 @@ grow_vertical = 2
 unique_name_in_owner = true
 script = ExtResource("1_7ujkf")
 
-[node name="BehindPlayer" type="Area2D" parent="GameManager"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/BehindPlayer"]
-position = Vector2(1166, 324)
-shape = SubResource("RectangleShape2D_8ggj8")
-
 [node name="BehindCPU" type="Area2D" parent="GameManager"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/BehindCPU"]
+position = Vector2(1166, 324)
+shape = SubResource("RectangleShape2D_8ggj8")
+
+[node name="BehindPlayer" type="Area2D" parent="GameManager"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameManager/BehindPlayer"]
 position = Vector2(-14, 324)
 shape = SubResource("RectangleShape2D_8ggj8")
 
@@ -154,12 +154,12 @@ shape = SubResource("RectangleShape2D_l6h7y")
 [node name="Player" parent="." instance=ExtResource("1_ygqlh")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(1080, 110)
+position = Vector2(32, 235)
 
 [node name="CPU" parent="." instance=ExtResource("3_mc587")]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(32, 214)
+position = Vector2(1080, 248)
 
 [node name="Ball" parent="." instance=ExtResource("2_kbk5c")]
 unique_name_in_owner = true
@@ -169,6 +169,6 @@ position = Vector2(498, 346)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ftd8i")
 
-[connection signal="body_entered" from="GameManager/BehindPlayer" to="GameManager" method="_on_behind_player_body_entered"]
 [connection signal="body_entered" from="GameManager/BehindCPU" to="GameManager" method="_on_behind_cpu_body_entered"]
+[connection signal="body_entered" from="GameManager/BehindPlayer" to="GameManager" method="_on_behind_player_body_entered"]
 [connection signal="timeout" from="GameManager/GameSpeedTimer" to="GameManager" method="_on_game_speed_timer_timeout"]

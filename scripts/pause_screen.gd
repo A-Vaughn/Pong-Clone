@@ -130,6 +130,8 @@ func _on_enter_finished():
 		# Loads and starts the start screen scene
 		var _start_screen_scene = ResourceLoader.load("res://scenes/start_screen.tscn").instantiate()
 		
+		Engine.time_scale = 1
+		
 		# Resume the game
 		get_tree().paused = false
 		

@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://c757afy2r1yk1"]
 
 [ext_resource type="Script" path="res://scripts/ball.gd" id="1_wdgu4"]
-[ext_resource type="AudioStream" uid="uid://kf57o0qyfy4x" path="res://assets/sounds/Blip_Select43.wav" id="2_2tsoy"]
-[ext_resource type="AudioStream" uid="uid://cfmafdimkjqgx" path="res://assets/sounds/Blip_Select44.wav" id="3_vr1fy"]
-[ext_resource type="AudioStream" uid="uid://1ob6s4vmgufn" path="res://assets/sounds/Paddle_Hit_Speed.wav" id="4_ef13i"]
-[ext_resource type="AudioStream" uid="uid://bxf4pljenmkn8" path="res://assets/sounds/hiteffect.wav" id="5_somsp"]
-[ext_resource type="AudioStream" uid="uid://bcyugqro1rifv" path="res://assets/sounds/Timer_sound.wav" id="6_7jdum"]
-[ext_resource type="AudioStream" uid="uid://c55h3se6gmvog" path="res://assets/sounds/Go_Sound.wav" id="7_0b6ax"]
+[ext_resource type="AudioStream" uid="uid://kf57o0qyfy4x" path="res://assets/sounds/boundary_hit.wav" id="2_f4vd5"]
+[ext_resource type="AudioStream" uid="uid://cfmafdimkjqgx" path="res://assets/sounds/slow_paddle_hit.wav" id="3_vr1fy"]
+[ext_resource type="AudioStream" uid="uid://1ob6s4vmgufn" path="res://assets/sounds/fast_paddle_hit.wav" id="4_ef13i"]
+[ext_resource type="AudioStream" uid="uid://bxf4pljenmkn8" path="res://assets/sounds/fast_paddle_hit2.wav" id="5_somsp"]
+[ext_resource type="AudioStream" uid="uid://bcyugqro1rifv" path="res://assets/sounds/timer_sound.wav" id="6_7jdum"]
+[ext_resource type="AudioStream" uid="uid://c55h3se6gmvog" path="res://assets/sounds/go_sound.wav" id="7_0b6ax"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_603up"]
 size = Vector2(16.75, 16)
@@ -265,7 +265,7 @@ scale_amount_max = 4.0
 scale_amount_curve = SubResource("Curve_t1gji")
 
 [node name="BoundaryHitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_2tsoy")
+stream = ExtResource("2_f4vd5")
 bus = &"SFX"
 
 [node name="PaddleHitSound" type="AudioStreamPlayer2D" parent="."]

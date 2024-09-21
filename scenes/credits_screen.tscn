@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/credits_screen.gd" id="1_bifw3"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_hxy26"]
 [ext_resource type="Script" path="res://scripts/music_credit.gd" id="2_sn8wp"]
-[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/Blip_Select2.wav" id="3_f8rgw"]
-[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/Pickup_Coin12.wav" id="4_i8bhr"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/select.wav" id="3_f8rgw"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/enter.wav" id="4_i8bhr"]
 
 [sub_resource type="Curve" id="Curve_2qyig"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -105,7 +105,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_hxy26")
 theme_override_font_sizes/font_size = 32
-text = "Game by Skippa
+text = "Game by  CodeSkipz
 "
 horizontal_alignment = 1
 vertical_alignment = 1

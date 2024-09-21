@@ -8,7 +8,7 @@ extends ColorRect
 @onready var _select = $SFX/Select
 @onready var _enter = $SFX/Enter
 
-var _start_game : bool
+var _to_game_mode : bool
 var _exit_game : bool
 var _to_settings : bool
 var _to_credits: bool
@@ -19,13 +19,20 @@ func _ready():
 	
 	# Highlights the replay button
 	_start_button.grab_focus()
+	
+	if GameData.first_load == true:
+		# Play select sfx
+		_select.play()
+		Music.play()
+		GameData.first_load = false
+		
 
 
 # When the start button is pressed
 func _on_start_button_pressed():
 	
-	# Set _start_game to true
-	_start_game = true
+	# Set _to_game_mode to true
+	_to_game_mode = true
 	
 	# Play enter sfx
 	_enter.play()
@@ -103,16 +110,26 @@ func _on_exit_button_focus_exited():
 # When the enter sfx is done playing
 func _on_enter_finished():
 	
-	if _start_game == true:
+	if _to_game_mode == true:
 		
-		# Loads and starts the game scene
-		var _game_scene = ResourceLoader.load("res://scenes/game.tscn").instantiate()
+		# Loads and starts the game mode scene
+		var _game_mode_scene = ResourceLoader.load("res://scenes/game_mode_screen.tscn").instantiate()
 		
 		# End the start screen scene scene
 		_start_screen_scene.queue_free()
 		
-		# Change to the game scene
-		get_tree().root.add_child(_game_scene)
+		# Change to the game mode scene
+		get_tree().root.add_child(_game_mode_scene)
+		
+		
+		## Loads and starts the game scene
+		#var _game_scene = ResourceLoader.load("res://scenes/game.tscn").instantiate()
+		#
+		## End the start screen scene scene
+		#_start_screen_scene.queue_free()
+		#
+		## Change to the game scene
+		#get_tree().root.add_child(_game_scene)
 		
 	elif _exit_game == true:
 		

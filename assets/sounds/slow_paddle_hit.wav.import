@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cfmafdimkjqgx"
-path="res://.godot/imported/Blip_Select44.wav-f3d26c1ae04f78181c8acecb6ae49b2f.sample"
+path="res://.godot/imported/slow_paddle_hit.wav-538e26068d0e5cc1cbcaf15f3fabfa33.sample"
 
 [deps]
 
-source_file="res://assets/sounds/Blip_Select44.wav"
-dest_files=["res://.godot/imported/Blip_Select44.wav-f3d26c1ae04f78181c8acecb6ae49b2f.sample"]
+source_file="res://assets/sounds/slow_paddle_hit.wav"
+dest_files=["res://.godot/imported/slow_paddle_hit.wav-538e26068d0e5cc1cbcaf15f3fabfa33.sample"]
 
 [params]
 

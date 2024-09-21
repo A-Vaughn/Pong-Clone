@@ -14,23 +14,14 @@ func _ready():
 	
 	# Centers the player
 	center_player()
-	
-	if GameData.single_player_mode == true:
-		up = "single_player_move_up"
-		down = "single_player_move_down"
-	else:
-		up = "p1_move_up"
-		down = "p1_move_down"
-		
-# TODO: continue
 
 func _process(delta):
 	
 	# Handle movement
-	if Input.is_action_pressed(up):
+	if Input.is_action_pressed("p2_move_up"):
 		position.y -= SPEED * delta 
 		
-	elif Input.is_action_pressed(down):
+	elif Input.is_action_pressed("p2_move_down"):
 		position.y += SPEED * delta
 
 	# Calculate the top and bottom limits for the paddle's movement

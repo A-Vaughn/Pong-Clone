@@ -12,7 +12,7 @@ var _speed = 600
 func _ready():
 	
 	# Centers the CPU
-	center_cpu()
+	center_player()
 
 
 func _process(delta):
@@ -36,7 +36,7 @@ func _process(delta):
 
 
 # This function centers the CPU paddle along the y axis
-func center_cpu():
+func center_player():
 	
 	# Get window height and paddle height
 	_win_height = get_viewport().get_visible_rect().size.y

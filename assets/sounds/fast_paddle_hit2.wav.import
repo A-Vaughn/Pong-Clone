@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://bxf4pljenmkn8"
-path="res://.godot/imported/hiteffect.wav-815119c2c2880c9a43b3f77d4e12cafd.sample"
+path="res://.godot/imported/fast_paddle_hit2.wav-5bf7a04ad3f22f82ec6b0fd04889c96e.sample"
 
 [deps]
 
-source_file="res://assets/sounds/hiteffect.wav"
-dest_files=["res://.godot/imported/hiteffect.wav-815119c2c2880c9a43b3f77d4e12cafd.sample"]
+source_file="res://assets/sounds/fast_paddle_hit2.wav"
+dest_files=["res://.godot/imported/fast_paddle_hit2.wav-5bf7a04ad3f22f82ec6b0fd04889c96e.sample"]
 
 [params]
 

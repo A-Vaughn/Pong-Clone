@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/start_screen.gd" id="1_2ilkl"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="2_b8ceg"]
-[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/Blip_Select2.wav" id="3_qtgn6"]
-[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/Pickup_Coin12.wav" id="4_5idfs"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/select.wav" id="3_qtgn6"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/enter.wav" id="4_5idfs"]
 
 [sub_resource type="Theme" id="Theme_lc2cg"]
 default_font = ExtResource("2_b8ceg")
@@ -86,14 +86,19 @@ script = ExtResource("1_2ilkl")
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.294271
+anchor_left = 0.228
 anchor_top = 0.198142
-anchor_right = 0.705729
-anchor_bottom = 0.312694
+anchor_right = 0.772
+anchor_bottom = 0.312
+offset_left = 0.343994
+offset_top = -0.396027
+offset_right = -0.343994
+offset_bottom = -0.17601
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_b8ceg")
 theme_override_font_sizes/font_size = 56
-text = "Pong Game"
+text = "Skipz's Pong
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true

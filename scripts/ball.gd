@@ -136,7 +136,7 @@ func _random_direction(_last_scorer):
 		return _new_direction
 		
 		# If the last scorer was the player, choose a random direction aimed at the cpu
-	elif _last_scorer == "Player":
+	elif _last_scorer == "CPU":
 		
 		# Set the direction of the ball to the left(direction of the CPU paddle)
 		_new_direction.x = -1
@@ -150,7 +150,7 @@ func _random_direction(_last_scorer):
 		return _new_direction
 		
 		# If the last scorer was the player, choose a random direction aimed at the player
-	elif _last_scorer == "CPU":
+	elif _last_scorer == "Player":
 		
 		# Set the direction of the ball to the right(direction of the Player paddle)
 		_new_direction.x = 1
@@ -188,7 +188,7 @@ func _direction_after_paddle(_current_collider):
 		_last_collider = "Player"
 		
 		# Sends ball to the left
-		_new_direction.x = -1
+		_new_direction.x = 1
 		
 		# Handle particles when speed is greater than 800
 		_handle_collision_effects()
@@ -200,7 +200,7 @@ func _direction_after_paddle(_current_collider):
 		_last_collider = "CPU"
 		
 		#Sends ball to the left
-		_new_direction.x = 1
+		_new_direction.x = -1
 		
 		# Handle particles when speed is greater than 800
 		_handle_collision_effects()
@@ -228,7 +228,7 @@ func _handle_collision_effects():
 		_ball_hit_effect.lifetime = 0.4
 		
 		# Determines the direction to emit particles when the ball was hit by the player
-		if _last_collider == "Player":
+		if _last_collider == "CPU":
 			
 			# Set the particles effect to the right side of the ball
 			_ball_hit_effect.position.x = 38
@@ -298,8 +298,7 @@ func _handle_collision_effects():
 		_ball_hit_effect.lifetime = 0.6
 		
 		# Determines the direction to emit particles when the ball was hit by the player
-		if _last_collider == "Player":
-			
+		if _last_collider == "CPU":
 			# Set the particles effect to the right side of the ball
 			_ball_hit_effect.position.x = 38
 			
@@ -402,7 +401,7 @@ func _on_timer_timeout():
 
 
 # This timer lasts 1 second and plays a sound at the end of the timer. I make the timer play one more time
-# so the sound could be heard twice. This is because i want the sound to play 3 times to match the _ball_movement_timer
+# so the sound could be heard twice. This is because I want the sound to play 3 times to match the _ball_movement_timer
 # which lasts 3 seconds. The first time the sound plays is when the game starts so i only need to worry about the other
 # two times
 # When 1 second has passed

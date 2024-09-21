@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_8drqt"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="1_waf3o"]
-[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/Blip_Select2.wav" id="2_4d8vl"]
-[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/Pickup_Coin12.wav" id="3_itub5"]
+[ext_resource type="AudioStream" uid="uid://dsk8arux4e57g" path="res://assets/sounds/select.wav" id="3_46kbc"]
+[ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/enter.wav" id="3_itub5"]
 
 [sub_resource type="Theme" id="Theme_3jiqw"]
 default_font = ExtResource("1_waf3o")
@@ -106,7 +106,7 @@ visible = false
 z_index = 5
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0, 0, 0, 0.92549)
+color = Color(0, 0, 0, 0.803922)
 script = ExtResource("1_8drqt")
 
 [node name="GameTitle" type="Label" parent="."]
@@ -208,7 +208,7 @@ environment = SubResource("Environment_n8tvd")
 [node name="SFX" type="Node" parent="."]
 
 [node name="Select" type="AudioStreamPlayer2D" parent="SFX"]
-stream = ExtResource("2_4d8vl")
+stream = ExtResource("3_46kbc")
 bus = &"SFX"
 
 [node name="Enter" type="AudioStreamPlayer2D" parent="SFX"]

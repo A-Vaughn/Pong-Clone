@@ -3,7 +3,6 @@ extends Node
 var _player_score = 0
 var _cpu_score = 0
 var last_scorer = null
-#var _score_to_win = 3
 var _ball_movement_timer
 
 @onready var _ball = %Ball
@@ -31,7 +30,11 @@ func _ready():
 	
 	# Get the ball movement timer
 	_ball_movement_timer = _ball.get_node("BallMovementTimer")
-
+	
+	if GameData.single_player_mode == true:
+		_cpu.set_script(load("res://scripts/cpu.gd"))
+	else:
+		_cpu.set_script(load("res://scripts/player2.gd"))
 # Checks for any inputs
 func _input(event):
 	
@@ -76,13 +79,12 @@ func _on_behind_player_body_entered(body):
 	
 	# Handles vfx based on the ball position and the number entered
 	# -1 tells the function to emit the particles to the right
-	_explode_ball(body.position, -1)
+	_explode_ball(body.position, 1)
 	
 	# Start the timer that determines when the game will go back to its original speed
 	_game_speed_timer.start()
 
 
-# Handles score updates and vfx when the ball goes behind the XPU
 func _on_behind_cpu_body_entered(body):
 	
 	# Sets the last scorer to player
@@ -92,8 +94,8 @@ func _on_behind_cpu_body_entered(body):
 	_update_score(last_scorer)
 	
 	# Handles vfx based on the ball position and the number entered
-	# 1 tells the function to emit the particles to the left
-	_explode_ball(body.position, 1)
+	# -1 tells the function to emit the particles to the right
+	_explode_ball(body.position, -1)
 	
 	# Start the timer that determines when the game will go back to its original speed
 	_game_speed_timer.start()
@@ -181,7 +183,7 @@ func _on_game_speed_timer_timeout():
 	# Reset the ball, player and cpu positions for the next round
 	_ball.start_ball()
 	_player.center_player()
-	_cpu.center_cpu()
+	_cpu.center_player()
 	
 
 
@@ -209,3 +211,7 @@ func _apply_shake():
 # Camera stuff
 func _random_offset() -> Vector2:
 	return Vector2(_rng.randf_range(-_shake_strength, _shake_strength), _rng.randf_range(-_shake_strength, _shake_strength))
+
+
+# Handles score updates and vfx when the ball goes behind the player
+

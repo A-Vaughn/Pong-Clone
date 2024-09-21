@@ -17,15 +17,27 @@ func _ready():
 	# Highlights the replay button
 	_replay.grab_focus()
 	
-	# If the winner from the game scene was the CPU
-	if GameData.winner == "CPU": 
-		# display you lost
-		_game_state.text = "You lost"
-		
-	# If the winner from the game scene was the player
+	if GameData.single_player_mode == true:
+		# If the winner from the game scene was the CPU
+		if GameData.winner == "CPU": 
+			# display you lost
+			_game_state.text = "You Lost"
+			
+		# If the winner from the game scene was the player
+		else:
+			# display you won
+			_game_state.text = "You Won"
 	else:
-		# display you won
-		_game_state.text = "You won"
+		# If the winner from the game scene was the CPU
+		if GameData.winner == "CPU": 
+			# display you lost
+			_game_state.text = "P2 Won"
+			
+		# If the winner from the game scene was the player
+		else:
+			# display you won
+			_game_state.text = "P1 Won"
+	
 
 
 # When the replay button is pressed
@@ -50,20 +62,12 @@ func _on_quit_pressed():
 
 # When the mouse enters the replay button
 func _on_replay_mouse_entered():
-	
-	# Play select sfx
-	_select.play()
-	
 	# Highlight the replay button
 	_replay.grab_focus()
 
 
 # When the mouse enters the _quit button
 func _on_quit_mouse_entered():
-	
-	# Play select sfx
-	_select.play()
-	
 	# Highlight the _quit button
 	_quit.grab_focus()
 

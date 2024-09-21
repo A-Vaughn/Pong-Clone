@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://kf57o0qyfy4x"
-path="res://.godot/imported/Blip_Select43.wav-4c190987fc2331c8b1fbc0cbba00fcff.sample"
+path="res://.godot/imported/boundary_hit.wav-99db5105c2b8a14bc668d929e14781a4.sample"
 
 [deps]
 
-source_file="res://assets/sounds/Blip_Select43.wav"
-dest_files=["res://.godot/imported/Blip_Select43.wav-4c190987fc2331c8b1fbc0cbba00fcff.sample"]
+source_file="res://assets/sounds/boundary_hit.wav"
+dest_files=["res://.godot/imported/boundary_hit.wav-99db5105c2b8a14bc668d929e14781a4.sample"]
 
 [params]
 
