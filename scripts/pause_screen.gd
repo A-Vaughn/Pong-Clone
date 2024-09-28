@@ -1,24 +1,23 @@
 extends ColorRect
 
-@onready var _pause_screen = $"."
-@onready var _resume_button = $ResumeButton
-@onready var _settings_button = $SettingsButton
-@onready var _quit_button = $QuitButton
-@onready var _select = $SFX/Select
-@onready var _enter = $SFX/Enter
+@onready var _pause_screen: ColorRect = $"."
+@onready var _resume_button: Button = $ResumeButton
+@onready var _settings_button: Button = $SettingsButton
+@onready var _quit_button: Button = $QuitButton
+@onready var _select: AudioStreamPlayer2D = $SFX/Select
+@onready var _enter: AudioStreamPlayer2D = $SFX/Enter
 
-@onready var game = $"../.."
-@onready var sfx_mute_timer = $SFXMuteTimer
+@onready var game: Node2D= $"../.."
+@onready var sfx_mute_timer: Timer = $SFXMuteTimer
 
-var _resume_game : bool
-var _quit_game : bool
-var _settings : bool
-
-
+enum _Next_States {RESUME_GAME, QUIT_GAME, SETTINGS}
+var _next_state: _Next_States
 
 # Checks for any inputs
 func _input(event):
+	
 	if _pause_screen.visible == true:
+		
 		# Check if the input was the pause key
 		if event.is_action_pressed("pause"):
 			
@@ -28,9 +27,6 @@ func _input(event):
 
 # Whenever the pause screen is visible or invisible
 func _on_visibility_changed():
-	
-	# If the pause screen is currently  visible
-	#if visible == true:
 		
 		# Mute the select sfx for the pause screen
 		# This was a work around 
@@ -40,7 +36,7 @@ func _on_visibility_changed():
 		_resume_button.grab_focus()
 		
 		# Start sfx mute timer
-		#sfx stay muted until timer times out
+		# sfx stay muted until timer times out
 		sfx_mute_timer.start()
 
 
@@ -50,8 +46,10 @@ func _on_resume_button_focus_exited():
 	# Play the select sfx
 	_select.play()
 
+
 # When the settings button is no longer highlighted
 func _on_settings_button_focus_exited():
+	
 	# Play the select sfx
 	_select.play()
 
@@ -69,28 +67,15 @@ func _on_resume_button_pressed():
 	# Play the enter sfx
 	_enter.play()
 	
-	# Set _resume_game to true
-	_resume_game = true
-	
-	# Set _quit_game to false
-	_quit_game = false
-	
-	# Set _settings to false
-	_settings = false
+	_next_state = _Next_States.RESUME_GAME
 
 
 func _on_settings_button_pressed():
+	
 	# Play the enter sfx
 	_enter.play()
 	
-	_settings = true
-	
-	# Set _resume_game to false
-	_resume_game = false
-	
-	# Set _quit_game to false
-	_quit_game = false
-
+	_next_state = _Next_States.SETTINGS
 
 # When the quit button is pressed
 func _on_quit_button_pressed():
@@ -98,57 +83,63 @@ func _on_quit_button_pressed():
 	# Play the enter sfx
 	_enter.play()
 	
-	# Set _quit_game to true
-	_quit_game = true
+	# Play the fade out animation
+	SceneTransition.fade_out()
 	
-	# Set _resume_game to false
-	_resume_game = false
-	
-	# Set _settings to false
-	_settings = false
-
+	_next_state = _Next_States.QUIT_GAME
 
 # When the enter sfx is done playing
 func _on_enter_finished():
 	
-	if _resume_game == true:
+	match _next_state:
 		
-		# Remove the filter effect from the background song
-		AudioServer.remove_bus_effect(1,0)
-		
-		# Resume the game
-		get_tree().paused = false
-		
-		# Hide the pause screen
-		_pause_screen.visible = false
-		
-	elif _quit_game == true:
-		
-		# Remove the filter effect from the background song
-		AudioServer.remove_bus_effect(1,0)
-		
-		# Loads and starts the start screen scene
-		var _start_screen_scene = ResourceLoader.load("res://scenes/start_screen.tscn").instantiate()
-		
-		Engine.time_scale = 1
-		
-		# Resume the game
-		get_tree().paused = false
-		
-		# End the game scene
-		game.queue_free()
-		
-		# Change to the start screen scene
-		get_tree().root.add_child(_start_screen_scene)
-		
-	elif _settings == true:
-		# Hide the pause screen
-		_pause_screen.visible = false
-		# Loads and starts the settings screen scene
-		var _settings_screen_scene = ResourceLoader.load("res://scenes/settings_screen.tscn").instantiate()
-		
-		# Change to the settings screen scene
-		get_tree().root.add_child(_settings_screen_scene)
+		_Next_States.RESUME_GAME:
+			
+			# Remove the filter effect from the background song
+			AudioServer.remove_bus_effect(1,0)
+			
+			# Resume the game
+			get_tree().paused = false
+			
+			# Hide the pause screen
+			_pause_screen.visible = false
+			
+		_Next_States.QUIT_GAME:
+			
+			# Remove the filter effect from the background song
+			AudioServer.remove_bus_effect(1,0)
+			
+			# Loads and starts the start screen scene
+			var _start_screen_scene: ColorRect = ResourceLoader.load("res://scenes/start_screen.tscn").instantiate()
+			
+			# Set the game time to normal incase the game was quit while the game was slowed down
+			Engine.time_scale = 1
+			
+			# Resume the game
+			get_tree().paused = false
+			
+			# End the game scene
+			game.queue_free()
+			
+			# Change to the start screen scene
+			get_tree().root.add_child(_start_screen_scene)
+			
+			# Add back decoration particles from memory
+			FX.reattach_particles()
+			
+		_Next_States.SETTINGS:
+			
+			# Hide the pause screen
+			_pause_screen.visible = false
+			
+			# Loads and starts the settings screen scene
+			var _settings_screen_scene: ColorRect = ResourceLoader.load("res://scenes/settings_screen.tscn").instantiate()
+			
+			# Increase the z index off the settings scene so that it appears above all of the game scene
+			_settings_screen_scene.z_index = 1
+			
+			# Change to the settings screen scene
+			get_tree().root.add_child(_settings_screen_scene)
 
 # When the mouse enters the resume button
 func _on_resume_button_mouse_entered():
@@ -156,9 +147,10 @@ func _on_resume_button_mouse_entered():
 	# Highlight the resume button
 	_resume_button.grab_focus()
 
-func _on_settings_button_mouse_entered():
-	_settings_button.grab_focus()
 
+func _on_settings_button_mouse_entered():
+	# Highlight the settings button
+	_settings_button.grab_focus()
 
 
 # When the mouse enters the quit button

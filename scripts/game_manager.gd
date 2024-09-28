@@ -1,22 +1,23 @@
 extends Node
 
-var _player_score = 0
-var _cpu_score = 0
-var last_scorer = null
-var _ball_movement_timer
+var _player_score: int = 0
+var _cpu_score:int = 0
+var last_scorer: String
+var _ball_movement_timer: Timer
 
-@onready var _ball = %Ball
-@onready var _player_score_text = $PlayerScore
-@onready var _cpu_score_text = $CPUscore
-@onready var _game = $".."
-@onready var _timer_label = $TimerLabel
-@onready var _player = %Player
-@onready var _cpu = %CPU
-@onready var _game_speed_timer = $GameSpeedTimer
-@onready var pause_screen = $PauseScreen
+@onready var _ball: CharacterBody2D = %Ball
+@onready var _player_score_text: Label = $PlayerScore
+@onready var _cpu_score_text: Label = $CPUScore
+@onready var _game: Node2D = $".."
+@onready var _timer_label: Label = $TimerLabel
+@onready var _player: StaticBody2D = %Player
+@onready var _cpu: StaticBody2D = %CPU
+@onready var _game_speed_timer: Timer = $GameSpeedTimer
+@onready var pause_screen: ColorRect = $PauseScreen
 
-@onready var _ball_explosion_camera = $BallExplosionCamera
-@onready var ball_explosion_sound = $BallExplosionSound
+@onready var _ball_explosion_camera: Camera2D = $BallExplosionCamera
+
+@onready var _ball_explosion_sound: AudioStreamPlayer2D = $BallExplosionSound
 
 # Camera stuff
 var _random_strength: float = 30.0
@@ -28,13 +29,21 @@ var _shake_strength: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
+	# Removes particles effect decoration from game scene
+	FX.detach_particles()
+	
 	# Get the ball movement timer
 	_ball_movement_timer = _ball.get_node("BallMovementTimer")
 	
+	# Loads scripts based on game mode for second paddle
 	if GameData.single_player_mode == true:
+		
 		_cpu.set_script(load("res://scripts/cpu.gd"))
 	else:
+		
 		_cpu.set_script(load("res://scripts/player2.gd"))
+
+
 # Checks for any inputs
 func _input(event):
 	
@@ -42,7 +51,7 @@ func _input(event):
 	if event.is_action_pressed("pause"):
 		
 		# Create a filter effect for the background song
-		var _effect = AudioEffectFilter.new()
+		var _effect: AudioEffect = AudioEffectFilter.new()
 		
 		# Add the filter effect to the background song, this makes the song sound muffled
 		AudioServer.add_bus_effect(1, _effect, 0)
@@ -105,10 +114,10 @@ func _on_behind_cpu_body_entered(body):
 func _explode_ball(ball_position, direction):
 	
 	# Play the ball explosion sfx
-	ball_explosion_sound.play()
+	_ball_explosion_sound.play()
 	
 	# Get the particle node
-	var _ball_explosion = self.get_node("BallExplosion")
+	var _ball_explosion: CPUParticles2D = self.get_node("BallExplosion")
 	
 	# Slow down the game by half its current speed
 	Engine.time_scale = 0.5
@@ -151,24 +160,32 @@ func _update_score(current_last_scorer):
 # Checks if either the player or cpu has won and changes the scene if true
 func _end_game(current_last_scorer):
 	
-	# Checks if the cpu last scored
-	if current_last_scorer == "CPU":
+	if current_last_scorer == "CPU" and _cpu_score == GameData.score_to_win:
 		
-		# Checks if the _cpu_score is the same as the _score_to_win
-		#if _cpu_score == _score_to_win:
-		if _cpu_score == GameData.score_to_win:
-			
-			# Changes to the game over scene
-			_change_to_game_over_screen_scene()
-	
-	# Checks if the player last scored
-	elif current_last_scorer == "Player":
+		# Play the fade out animation
+		SceneTransition.fade_out()
 		
-		# Checks if the _player_score is the same as the _score_to_win
-		#if _player_score == _score_to_win:
-		if _player_score == GameData.score_to_win:
-			# Changes to the game over scene
-			_change_to_game_over_screen_scene()
+		# Connects the fade_out_finished_signal from the singleton SceneTransition to _on_fade_out_finished
+		# This allows me to know when the fade out scene transition is over
+		SceneTransition.connect("fade_out_finished_signal", Callable(self, "_on_fade_out_finished"))
+		
+		# Game is over
+		return true 
+		
+	elif current_last_scorer == "Player" and _player_score == GameData.score_to_win:
+		
+		# Play the fade out animation
+		SceneTransition.fade_out()
+		
+		# Connects the fade_out_finished_signal from the singleton SceneTransition to _on_fade_out_finished
+		# This allows me to know when the fade out scene transition is over
+		SceneTransition.connect("fade_out_finished_signal", Callable(self, "_on_fade_out_finished"))
+		
+		 # Game is over
+		return true
+		
+	# Game is not over, continue with the next round
+	return false 
 
 
 # Resets the games speed, resets the ball,play and cpu positions and checks to see if the game is over
@@ -177,13 +194,12 @@ func _on_game_speed_timer_timeout():
 	#  Resets the games speed
 	Engine.time_scale = 1
 	
-	# Handles what happens if the game is over
-	_end_game(last_scorer)
-	
-	# Reset the ball, player and cpu positions for the next round
-	_ball.start_ball()
-	_player.center_player()
-	_cpu.center_player()
+	# Handles what happens if the game is not over
+	if _end_game(last_scorer) == false:
+		# Reset the ball, player and cpu positions for the next round
+		_ball.start_ball()
+		_player.center_player()
+		_cpu.center_player()
 	
 
 
@@ -194,10 +210,13 @@ func _change_to_game_over_screen_scene():
 	GameData.winner = last_scorer
 	
 	# Load and start the game over scene
-	var _game_over_screen_scene = ResourceLoader.load("res://scenes/game_over_screen.tscn").instantiate()
+	var _game_over_screen_scene: ColorRect = ResourceLoader.load("res://scenes/game_over_screen.tscn").instantiate()
 	
 	# End the game scene
 	_game.queue_free()
+	
+	# Add back decoration particles
+	FX.reattach_particles()
 	
 	# Change to the game over scene
 	get_tree().root.add_child(_game_over_screen_scene)
@@ -213,5 +232,7 @@ func _random_offset() -> Vector2:
 	return Vector2(_rng.randf_range(-_shake_strength, _shake_strength), _rng.randf_range(-_shake_strength, _shake_strength))
 
 
-# Handles score updates and vfx when the ball goes behind the player
-
+func _on_fade_out_finished():
+	
+	# Change to the game over scene after fade out animation
+	_change_to_game_over_screen_scene()

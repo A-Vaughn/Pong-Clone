@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://blk007ns6mo4w"]
-
-[ext_resource type="AudioStream" uid="uid://dwux6klpv1gyy" path="res://assets/music/One Man Symphony - In The Blink Of An Eye (Free) - 09 Not For Myself (Chase Theme 02).mp3" id="1_682b5"]
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
-process_mode = 3
-stream = ExtResource("1_682b5")
-bus = &"Music"

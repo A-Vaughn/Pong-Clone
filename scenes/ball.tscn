@@ -127,7 +127,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_yuv4x"]
-resource_name = "moving"
+resource_name = "speed_increase"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -182,7 +182,7 @@ tracks/3/keys = {
 _data = {
 "RESET": SubResource("Animation_e0wuc"),
 "hit": SubResource("Animation_do0sp"),
-"speedIncrease": SubResource("Animation_yuv4x")
+"speed_increase": SubResource("Animation_yuv4x")
 }
 
 [sub_resource type="Curve" id="Curve_au2hm"]

@@ -1,13 +1,10 @@
 extends StaticBody2D
 
-var _win_height
-var _player_height
+var _win_height: float
+var _player_height: float
 
-const SPEED = 600
-@onready var _color_rect = $ColorRect
-
-var up
-var down
+const SPEED: int = 600
+@onready var _color_rect: ColorRect = $ColorRect
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,8 +22,8 @@ func _process(delta):
 		position.y += SPEED * delta
 
 	# Calculate the top and bottom limits for the paddle's movement
-	var _top_limit = 0
-	var _bottom_limit = _win_height - _player_height
+	var _top_limit: float = 0.0
+	var _bottom_limit: float = _win_height - _player_height
 
 	# Clamp the paddle's position within the calculated limits
 	position.y = clamp(position.y, _top_limit, _bottom_limit)

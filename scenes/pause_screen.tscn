@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cctx8fr3fqrsn"]
+[gd_scene load_steps=18 format=3 uid="uid://cctx8fr3fqrsn"]
 
 [ext_resource type="Script" path="res://scripts/pause_screen.gd" id="1_8drqt"]
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="1_waf3o"]
@@ -8,13 +8,13 @@
 [sub_resource type="Theme" id="Theme_3jiqw"]
 default_font = ExtResource("1_waf3o")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xtxw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qqh7"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(1, 1, 1, 1)
+border_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_txys3"]
 bg_color = Color(0, 0, 0, 1)
@@ -24,18 +24,7 @@ border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qqh7"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(1, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_aexct"]
-default_font = ExtResource("1_waf3o")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aix7f"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xtxw"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 10
 border_width_top = 10
@@ -43,13 +32,8 @@ border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe0hi"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(1, 0, 0, 1)
+[sub_resource type="Theme" id="Theme_aexct"]
+default_font = ExtResource("1_waf3o")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02md5"]
 bg_color = Color(0, 0, 0, 1)
@@ -59,16 +43,32 @@ border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 0, 0, 1)
 
-[sub_resource type="Theme" id="Theme_ke40k"]
-default_font = ExtResource("1_waf3o")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe0hi"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p21k5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aix7f"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_ke40k"]
+default_font = ExtResource("1_waf3o")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rde0o"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cckob"]
 bg_color = Color(0, 0, 0, 1)
@@ -86,19 +86,13 @@ border_width_right = 10
 border_width_bottom = 10
 border_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rde0o"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p21k5"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(1, 0, 0, 1)
-
-[sub_resource type="Environment" id="Environment_n8tvd"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.12
-glow_blend_mode = 1
+border_color = Color(1, 1, 1, 1)
 
 [node name="PauseScreen" type="ColorRect"]
 process_mode = 2
@@ -106,7 +100,7 @@ visible = false
 z_index = 5
 offset_right = 1152.0
 offset_bottom = 648.0
-color = Color(0, 0, 0, 0.803922)
+color = Color(0, 0, 0, 0.909804)
 script = ExtResource("1_8drqt")
 
 [node name="GameTitle" type="Label" parent="."]
@@ -139,13 +133,13 @@ offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_3jiqw")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_4xtxw")
-theme_override_styles/hover = SubResource("StyleBoxFlat_txys3")
 theme_override_styles/focus = SubResource("StyleBoxFlat_4qqh7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_txys3")
+theme_override_styles/normal = SubResource("StyleBoxFlat_4xtxw")
 action_mode = 0
 text = "Resume"
 
@@ -163,13 +157,13 @@ offset_bottom = 36.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_aexct")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_aix7f")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fe0hi")
 theme_override_styles/focus = SubResource("StyleBoxFlat_02md5")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fe0hi")
+theme_override_styles/normal = SubResource("StyleBoxFlat_aix7f")
 action_mode = 0
 text = "Settings"
 metadata/_edit_use_anchors_ = true
@@ -182,28 +176,25 @@ anchor_top = 0.559306
 anchor_right = 0.5
 anchor_bottom = 0.559306
 offset_left = -140.0
-offset_top = 89.57
+offset_top = 90.5697
 offset_right = 140.0
-offset_bottom = 161.57
+offset_bottom = 162.57
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_ke40k")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxFlat_p21k5")
+theme_override_styles/focus = SubResource("StyleBoxFlat_rde0o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_cckob")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ocws7")
-theme_override_styles/focus = SubResource("StyleBoxFlat_rde0o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_p21k5")
 action_mode = 0
 text = "Quit
 "
 metadata/_edit_use_anchors_ = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_n8tvd")
 
 [node name="SFX" type="Node" parent="."]
 

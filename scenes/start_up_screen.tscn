@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bhpahdsxahcsi"]
+[gd_scene load_steps=14 format=3 uid="uid://bhpahdsxahcsi"]
 
 [ext_resource type="FontFile" uid="uid://dtbo7ufseye1o" path="res://assets/fonts/PixelOperator8.ttf" id="1_3n38k"]
 [ext_resource type="Script" path="res://scripts/start_up_screen.gd" id="1_6pt3x"]
-[ext_resource type="AudioStream" uid="uid://b5butb5duvutt" path="res://assets/sounds/title_impact_sound.wav" id="3_5y1bc"]
-[ext_resource type="AudioStream" uid="uid://dl2sx3ct4hwd4" path="res://assets/sounds/button_fade_in.wav" id="4_g3xiw"]
+[ext_resource type="AudioStream" uid="uid://cbjj0yb6vcu32" path="res://assets/sounds/title_impact_sound.wav" id="3_5y1bc"]
+[ext_resource type="AudioStream" uid="uid://gc45d2ef3g0v" path="res://assets/sounds/button_fade_in.wav" id="4_g3xiw"]
 [ext_resource type="AudioStream" uid="uid://c7ausv526nehp" path="res://assets/sounds/enter.wav" id="4_s2krg"]
 
 [sub_resource type="Theme" id="Theme_lc2cg"]
@@ -16,12 +16,6 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Environment" id="Environment_n8tvd"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.12
-glow_blend_mode = 1
 
 [sub_resource type="Animation" id="Animation_6khq7"]
 length = 0.001
@@ -300,7 +294,7 @@ curve = SubResource("Curve_y4rq6")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oodee"]
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(100, 30, 0)
+emission_box_extents = Vector3(260, 30, 0)
 spread = 180.0
 flatness = 0.135
 initial_velocity_min = 150.0
@@ -322,10 +316,10 @@ anchor_left = 0.228
 anchor_top = 0.198142
 anchor_right = 0.772
 anchor_bottom = 0.313
-offset_left = 339.0
-offset_top = 128.396
-offset_right = 813.0
-offset_bottom = 202.626
+offset_left = 76.344
+offset_top = -3.05176e-05
+offset_right = -76.344
+offset_bottom = -0.198288
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_3n38k")
 theme_override_font_sizes/font_size = 56
@@ -387,9 +381,9 @@ anchor_top = 0.76929
 anchor_right = 0.5
 anchor_bottom = 0.76929
 offset_left = -140.0
-offset_top = -46.5
+offset_top = -45.4999
 offset_right = 140.0
-offset_bottom = 25.5
+offset_bottom = 26.5001
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -407,13 +401,13 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.891096
+anchor_top = 0.881
 anchor_right = 0.5
-anchor_bottom = 0.891096
+anchor_bottom = 0.881
 offset_left = -140.0
-offset_top = -46.43
+offset_top = -35.888
 offset_right = 140.0
-offset_bottom = 25.57
+offset_bottom = 36.112
 grow_horizontal = 2
 grow_vertical = 2
 focus_mode = 0
@@ -423,11 +417,9 @@ theme_override_font_sizes/font_size = 32
 theme_override_styles/disabled = SubResource("StyleBoxFlat_vxql2")
 disabled = true
 action_mode = 0
-text = "Exit"
+text = "Exit
+"
 metadata/_edit_use_anchors_ = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_n8tvd")
 
 [node name="SFX" type="Node" parent="."]
 

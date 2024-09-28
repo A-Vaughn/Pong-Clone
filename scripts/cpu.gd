@@ -1,12 +1,12 @@
 extends StaticBody2D
 
-var _win_height
-var _cpu_height
-var _speed = 600
+var _win_height: float
+var _cpu_height: float
+var _speed: int = 600
 
-@onready var _color_rect = $ColorRect
-@onready var _ball = %Ball
-@onready var _ball_movement_timer = _ball.get_node("BallMovementTimer")
+@onready var _color_rect: ColorRect = $ColorRect
+@onready var _ball: CharacterBody2D = %Ball
+@onready var _ball_movement_timer: Timer = _ball.get_node("BallMovementTimer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,14 +22,14 @@ func _process(delta):
 	if _ball_movement_timer.time_left == 0:
 		
 		# Calculate position to move to
-		var _target = _ball.position.y - (_cpu_height/2)
+		var _target: float = _ball.position.y - (_cpu_height/2)
 		
 		# Handle movement
 		position.y = move_toward(position.y, _target, _speed * delta) 
 		
 		# Calculate the top and bottom limits for the paddle's movement
-		var _top_limit = 0
-		var _bottom_limit = _win_height - _cpu_height
+		var _top_limit: float = 0.0
+		var _bottom_limit : float= _win_height - _cpu_height
 		
 		# Clamp the paddle's position within the calculated limits
 		position.y = clamp(position.y, _top_limit, _bottom_limit)
